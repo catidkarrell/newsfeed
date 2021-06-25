@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Karrel Catid</h1>
+    <h1>Karrel Vincent Catid</h1>
   </div>
 </template>
 
