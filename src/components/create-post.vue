@@ -19,7 +19,7 @@
 
     <ul id="list">
       <li v-for="post in posts" :key="post">
-        <PostList :postTitle="post.title" :postDesc="post.text" />
+        <PostList :postTitle="post.title" :postContent="post.text" />
       </li>
     </ul>
   </div>
