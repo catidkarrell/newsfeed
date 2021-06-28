@@ -22,24 +22,22 @@ export default defineComponent({
   name: 'createPost',
 
   setup() {
-    const { posts, totalProps } = getPosts();
+    const { posts } = getPosts();
     const title = ref('');
     const text = ref('');
-    const post = {
-      title: title.value,
-      text: text.value,
-      id: totalProps + 1,
-    };
 
     function createPost() {
       if (title.value !== '' && text.value !== '') {
-        console.log('Posted!');
-        console.log(totalProps);
-
-        posts.value.unshift(post);
+        posts.value.unshift({
+          title: title.value,
+          text: text.value,
+          id: title.value + String(Math.round(Math.random() * 100)),
+        });
       } else {
-        alert('Post is empty.');
+        alert('Add a content.');
       }
+      title.value = '';
+      text.value = '';
     }
     function clearContents() {
       title.value = '';
@@ -68,7 +66,6 @@ div #postform {
 }
 #list {
   display: grid;
-
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-auto-rows: minmax(150px, auto);
   grid-gap: 0px;

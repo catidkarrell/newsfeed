@@ -1,8 +1,8 @@
 import { ref } from 'vue';
-import postData from '@/data/Data';
+import Data from '@/data/Data';
 
 const getPost = (id: number) => {
-  const posts = ref(postData);
+  const posts = ref(Data);
   const post = posts.value[id];
 
   return { post };

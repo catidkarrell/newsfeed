@@ -1,27 +1,30 @@
 <template>
- <div class="post-list">
-    <div v-for="post in posts" :key="post" class="list">
-      <SinglePost :post="post" />
+ <div class='post-list'>
+    <div v-for="post in posts" :key="post.id" class="list">
+      <SinglePost />
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, computed } from 'vue';
-import SinglePost from '@/components/single-post.vue';
+import { defineComponent } from 'vue';
+import SinglePost from './single-post.vue';
 
 export default defineComponent({
   name: 'postList',
-  components: { SinglePost },
+  component: { SinglePost },
   props: ['posts'],
-
-  setup() {
-    
-  },
 });
 </script>
 
 <style>
+.post-list > * {
+  grid-column: 1/-1;
+  background: rgb(198, 255, 201);
+  padding: 30px;
+  border-radius: 10px;
+  margin: 10px;
+}
 .post-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -31,13 +34,5 @@ export default defineComponent({
   margin: 0 auto;
   justify-content: left;
   text-align: left;
-}
-
-.post-list > * {
-  grid-column: 1/-1;
-  background: rgb(198, 255, 201);
-  padding: 30px;
-  border-radius: 10px;
-  margin: 10px;
 }
 </style>

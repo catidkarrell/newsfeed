@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue';
+import { defineComponent } from 'vue';
 import CreatePost from '../components/create-post.vue';
 import getPosts from '../composables/getPosts';
 import PostFeed from '../components/post-list.vue';
@@ -18,11 +18,7 @@ export default defineComponent({
   components: { CreatePost, PostFeed },
 
   setup() {
-    const { posts, totalProps } = getPosts();
-
-    onMounted(() => {
-      console.log(totalProps);
-    });
+    const { posts } = getPosts();
 
     return { posts };
   },

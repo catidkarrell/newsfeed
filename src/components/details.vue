@@ -3,8 +3,6 @@
         <div>
             <h3>{{ post.title }}</h3>
             <p></p>
-            <!-- <h4>{{ post.id }}</h4>
-            <p></p> -->
             <p>{{ post.text }}</p>
             <div class='buttons'>
                 <button @click='$router.go(-1)'>Back</button>
