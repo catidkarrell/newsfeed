@@ -6,68 +6,48 @@
         <p></p>
         <textarea rows="3" placeholder="Content" v-model="text" required></textarea>
         <div class="buttons">
-          <button @click="createPost">Post</button>
-          <button @click="clearContents">Cancel</button>
+          <button @click.prevent="createPost">Post</button>
+          <button @click.prevent="clearContents">Cancel</button>
         </div>
       </form>
     </div>
   </div>
-
-  <button @click="toggleFeed">Toggle Feed</button>
-
-  <div class="postfeed" v-show="toggle">
-
-    <ul id="list">
-      <li v-for="post in posts" :key="post">
-        <PostList :postTitle="post.title" :postContent="post.text" />
-      </li>
-    </ul>
-  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import PostList from './post-list.vue';
-
-const body = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ...';
+import { defineComponent, ref } from 'vue';
+import getPosts from '@/composables/getPosts';
 
 export default defineComponent({
-  name: 'newsfeedNewsFeed',
-  components: {
-    PostList,
-  },
-  data() {
-    return {
-      toggle: true,
-      title: '',
-      text: '',
-      key: '',
-      posts: [
-        { title: 'Title 1', text: body, key: 'Title 1' },
+  name: 'createPost',
 
-      ],
+  setup() {
+    const { posts, totalProps } = getPosts();
+    const title = ref('');
+    const text = ref('');
+    const post = {
+      title: title.value,
+      text: text.value,
+      id: totalProps + 1,
     };
-  },
-  methods: {
-    createPost() {
-      if (this.title !== '' && this.text !== '') {
-        const Title = this.title;
-        const Text = this.text;
-        const Key = this.key;
 
-        this.posts.unshift({ title: Title, text: Text, key: Key });
+    function createPost() {
+      if (title.value !== '' && text.value !== '') {
+        console.log('Posted!');
+        console.log(totalProps);
 
-        this.title = '';
-        this.text = '';
+        posts.value.unshift(post);
+      } else {
+        alert('Post is empty.');
       }
-    },
-    toggleFeed() {
-      this.toggle = !this.toggle;
-    },
-    clearContents() {
-      this.title = '';
-      this.text = '';
-    },
+    }
+    function clearContents() {
+      title.value = '';
+      text.value = '';
+    }
+    return {
+      title, text, posts, createPost, clearContents,
+    };
   },
 });
 </script>
@@ -129,16 +109,6 @@ div #postform > * {
   padding: 30px 30px 10px 30px;
   border-radius: 10px;
   margin: 10px;
-  box-shadow: 3px 3px 3px rgb(199, 199, 199);
-}
-#list > * {
-  grid-column: 1/-1;
-  background: rgb(228, 255, 230);
-
-  padding: 30px;
-  border-radius: 10px;
-  margin: 10px;
-  box-shadow: 3px 3px 3px rgb(199, 199, 199);
 }
 .buttons {
   display: flex;

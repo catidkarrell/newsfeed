@@ -1,22 +1,26 @@
 <template>
- <div class="post-list">
-    <div v-for="post in posts" :key="post" class="list">
-      <SinglePost :post="post" />
-    </div>
+  <div class='post-list'>
+    <router-link :to="{ name: 'Details', params: { id: post.id } }">
+      <h3>{{ post.title }}</h3>
+    </router-link>
+    <p></p>
+    <p>{{ snippet }}</p>
   </div>
 </template>
 
 <script>
 import { defineComponent, computed } from 'vue';
-import SinglePost from '@/components/single-post.vue';
 
 export default defineComponent({
   name: 'postList',
-  components: { SinglePost },
   props: ['posts'],
 
-  setup() {
-    
+  setup(props) {
+    const snippet = computed(() => {
+      return props.post.text.substring(0, 100) + '...';
+    });
+
+    return { snippet };
   },
 });
 </script>
