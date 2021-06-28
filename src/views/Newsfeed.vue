@@ -3,7 +3,7 @@
     <CreatePost />
   </div>
   <div class='postFeed'>
-    <PostFeed :posts='posts'/>
+    <PostFeed :posts="posts"/>
   </div>
 </template>
 
