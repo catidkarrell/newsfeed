@@ -104,7 +104,6 @@ div #postform > * {
   grid-column: 1/-1;
   background: rgb(241, 241, 241);
   padding: 30px 30px 10px 30px;
-  border-radius: 10px;
   margin: 10px;
 }
 .buttons {

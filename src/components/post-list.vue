@@ -20,9 +20,8 @@ export default defineComponent({
 <style>
 .post-list > * {
   grid-column: 1/-1;
-  background: rgb(198, 255, 201);
+  background: rgb(163, 163, 163);
   padding: 30px;
-  border-radius: 10px;
   margin: 10px;
 }
 .post-list {
