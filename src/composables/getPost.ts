@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import Data from '@/data/Data';
+import Data from '@/data/postData';
 
 const getPost = (id: number) => {
   const posts = ref(Data);

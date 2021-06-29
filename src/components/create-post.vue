@@ -22,24 +22,24 @@ export default defineComponent({
   name: 'createPost',
 
   setup() {
-    const { posts, totalIndex } = getPosts();
+    const { posts } = getPosts();
     const title = ref('');
     const text = ref('');
-    const post = {
-      title: title.value,
-      text: text.value,
-      id: totalIndex + 1,
-    };
 
     function createPost() {
       if (title.value !== '' && text.value !== '') {
         console.log('Posted!');
-        console.log(totalIndex);
 
-        posts.value.unshift(post);
+        posts.value.unshift({
+          title: title.value,
+          text: text.value,
+          id: title.value + String(Math.round(Math.random() * 100)),
+        });
       } else {
         alert('Post is empty.');
       }
+      title.value = '';
+      text.value = '';
     }
     function clearContents() {
       title.value = '';

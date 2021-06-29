@@ -1,7 +1,7 @@
 interface IPost {
     title: string;
     text: string;
-    id: string | number;
+    id: number | string;
 }
 
 export default IPost;

@@ -7,25 +7,40 @@
             <div class='buttons'>
                 <button @click='$router.go(-1)'>Back</button>
                 <button>Edit</button>
-                <button>Delete</button>
+                <button @click.prevent='deletePost'>Delete</button>
             </div>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue';
-import getPost from '@/composables/getPost';
+import { defineComponent, ref } from 'vue';
+import postData from '@/data/postData';
+import postInterface from '@/interface/dataInterface';
 
 export default defineComponent({
+  name: 'Details',
   props: ['id'],
   setup(props) {
-    const { post } = getPost(props.id);
-    onMounted(() => {
-      console.log(post.title);
-    });
+    const key = ref(props.id);
+    const posts = ref(postData);
+    const index = 0;
 
-    return { post };
+    const post: postInterface = {
+      title: '',
+      text: '',
+      id: '',
+    };
+
+    function deletePost() {
+      if (window.confirm('Are you sure you want to delete?')) {
+        console.log('Post deleted');
+        posts.value.splice(index, 1);
+      }
+    }
+    return {
+      key, post, posts, index, deletePost,
+    };
   },
 });
 </script>

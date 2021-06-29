@@ -1,21 +1,20 @@
 <template>
-  <div class='posts'>
-    <h3>{{ post.title }}</h3>
+  <div>
+    <router-link :to="{ name: 'Details', params: { id: post.id } }">
+      <h3>{{ post.title }}</h3>
+    </router-link>
     <p></p>
     <p>{{ post.text }}</p>
-    <div>
-      <router-link :to="{ name: 'Details', params: { id: post.id } }">
-        <button>View</button>
-      </router-link>
-    </div>
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script lang="ts">
+import { defineComponent, onMounted, ref } from 'vue';
 
 export default defineComponent({
-  name: 'singlePost',
   props: ['post'],
 });
 </script>
+<style>
+
+</style>
