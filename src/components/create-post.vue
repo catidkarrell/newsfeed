@@ -107,6 +107,7 @@ div #postform > * {
   background: rgb(241, 241, 241);
   padding: 30px 30px 10px 30px;
   margin: 10px;
+  border-radius: 10px;
 }
 .buttons {
   display: flex;

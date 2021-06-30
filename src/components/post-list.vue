@@ -1,19 +1,21 @@
 <template>
   <div class='post-list'>
     <div v-for="post in posts" :key="post.id">
-      <SinglePost :posts='posts' />
+      <router-link :to="{ name: 'Details', params: { id: post.id } }">
+        <h3>{{ post.title }}</h3>
+      </router-link>
+      <p></p>
+      <p>{{ post.text }}</p>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import SinglePost from './single-post.vue';
 
 export default defineComponent({
   name: 'postList',
-  props: ['posts'],
-  component: { SinglePost },
+  props: ['posts', 'post'],
   setup(props) {
     console.log(props.posts);
   },
@@ -24,8 +26,9 @@ export default defineComponent({
 .post-list > * {
   grid-column: 1/-1;
   background: rgb(214, 214, 214);
-  padding: 30px;
+  padding: 25px;
   margin: 10px;
+  border-radius: 10px;
 }
 .post-list {
   display: grid;

@@ -2,7 +2,7 @@ import IPost from '@/interface/dataInterface';
 
 const postData: IPost[] = [
   {
-    title: 'Post 1',
+    title: 'The quick',
     text: 'The quick brown fox jumped over the lazy dog',
     id: 1,
   },
