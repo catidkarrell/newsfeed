@@ -55,7 +55,7 @@ export default defineComponent({
     }
 
     function saveEdit() {
-      if (window.confirm('Confirm your post edits?')) {
+      if (window.confirm('Save changes?')) {
         alert('Saved');
         posts.value.splice(index, 1, post);
         console.log(posts);
