@@ -1,4 +1,4 @@
-import IPost from '@/interface/dataInterface';
+import IPost from '@/interface/data';
 
 const postData: IPost[] = [
   {

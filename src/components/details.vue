@@ -1,19 +1,14 @@
 <template>
     <div id='post'>
         <div>
-            <form>
-              <input id="postTitle" placeholder="Title" v-model="post.title" required/>
-              <p></p>
-              <textarea rows="10" placeholder="Content" v-model="post.text" required>
-              </textarea>
-            </form>
+            <h3>{{ post.title }}</h3>
+            <p></p>
+            <p>{{ post.text }}</p>
             <div class='buttons'>
                 <button @click='$router.go(-1)'>Back</button>
-                <button @click.prevent='saveEdit'>
-                  <router-link id="newsfeed" to="/newsfeed">Save</router-link>
-                </button>
-                <button @click.prevent='deletePost' id='deleteButton'>
-                  <router-link id="newsfeed" to="/newsfeed">Delete</router-link>
+                <button @click='gotoEdit'>Edit</button>
+                <button @click.prevent='removePost' id='deleteButton'>
+                  Delete
                 </button>
             </div>
         </div>
@@ -21,55 +16,53 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
-import postData from '@/data/postData';
-import postInterface from '@/interface/dataInterface';
+import { defineComponent, ref } from 'vue';
+import IPost from '@/interface/data';
+import getPosts from '@/composables/use-post';
+import router from '@/router';
 
 export default defineComponent({
   name: 'Details',
-  props: ['id'],
+  props: {
+    id: {
+      type: Number,
+      required: true,
+    },
+  },
   setup(props) {
     const key = ref(props.id);
-    const posts = ref(postData);
+    const { posts, goToEditPost, deletePost } = getPosts();
     let index = 0;
 
-    const post: postInterface = {
+    const post: IPost = {
       title: '',
       text: '',
-      id: '',
+      id: 0,
     };
-    onMounted(() => {
-      console.log('Mounted');
-    });
 
     for (let i = 0; i < posts.value.length; i += 1) {
-      if (posts.value[i].id === props.id) {
+      if (posts.value[i].id == key.value) {
         console.log(posts.value[i].title);
         console.log(posts.value[i].id);
+        index = i;
         post.title = posts.value[i].title;
         post.text = posts.value[i].text;
         post.id = posts.value[i].id;
-        index = i;
         console.log(post);
       }
     }
-
-    function saveEdit() {
-      if (window.confirm('Save changes?')) {
-        alert('Saved');
-        posts.value.splice(index, 1, post);
-        console.log(posts);
+    function removePost() {
+      if (deletePost(index)) {
+        console.log('Post deleted');
+        router.go(-1);
       }
     }
 
-    function deletePost() {
-      if (window.confirm('Are you sure you want to delete?')) {
-        console.log('Post deleted');
-        posts.value.splice(index, 1);
-      }
+    function gotoEdit() {
+      goToEditPost(post.id);
     }
     return {
-      key, post, posts, index, deletePost, saveEdit,
+      post, removePost, gotoEdit,
     };
   },
 });
@@ -85,8 +78,5 @@ div #post {
   margin: 0 auto;
   justify-content: left;
   text-align: left;
-}
-#deletBtn {
-  background: rgb(129, 15, 38);
 }
 </style>

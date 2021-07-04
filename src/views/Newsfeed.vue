@@ -3,13 +3,13 @@
     <CreatePost />
   </div>
   <div>
-    <PostList :posts="posts"/>
+    <PostList :posts='posts'/>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import getPosts from '@/composables/getPosts';
+import getPosts from '@/composables/use-post';
 import CreatePost from '@/components/create-post.vue';
 import PostList from '@/components/post-list.vue';
 
@@ -19,7 +19,6 @@ export default defineComponent({
     CreatePost,
     PostList,
   },
-
   setup() {
     const { posts } = getPosts();
 

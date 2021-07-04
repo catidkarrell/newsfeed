@@ -6,7 +6,7 @@
         <p></p>
         <textarea rows="3" placeholder="Content" v-model="text" required></textarea>
         <div class="buttons">
-          <button @click.prevent="createPost">Post</button>
+          <button @click.prevent="addPost">Post</button>
           <button @click.prevent="clearContents">Cancel</button>
         </div>
       </form>
@@ -16,25 +16,21 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import getPosts from '@/composables/getPosts';
+import getPosts from '@/composables/use-post';
 
 export default defineComponent({
   name: 'createPost',
 
   setup() {
-    const { posts } = getPosts();
+    const { createPost } = getPosts();
     const title = ref('');
     const text = ref('');
 
-    function createPost() {
-      if (title.value !== '' && text.value !== '') {
-        console.log('Posted!');
-
-        posts.value.unshift({
-          title: title.value,
-          text: text.value,
-          id: title.value + String(Math.round(Math.random() * 100)),
-        });
+    function addPost() {
+      if (title.value.trim() !== '' && text.value.trim() !== '') {
+        createPost(title.value, text.value);
+        title.value = '';
+        text.value = '';
       } else {
         alert('Post is empty.');
       }
@@ -46,7 +42,7 @@ export default defineComponent({
       text.value = '';
     }
     return {
-      title, text, posts, createPost, clearContents,
+      title, text, addPost, clearContents,
     };
   },
 });
@@ -120,6 +116,7 @@ button {
   background: rgb(0, 112, 15);
   border-radius: 10px;
   color: rgb(255, 255, 255);
+  cursor: pointer;
 }
 button:hover {
   background-color: rgb(34, 58, 37);

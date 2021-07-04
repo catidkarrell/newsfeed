@@ -1,20 +1,27 @@
+import { RouteName } from '@/enum/route-name';
 import { RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'Home',
+    name: RouteName.Home,
     component: () => import('../views/Home.vue'),
   },
   {
     path: '/newsfeed',
-    name: 'Newsfeed',
+    name: RouteName.Newsfeed,
     component: () => import('../views/Newsfeed.vue'),
   },
   {
-    path: '/posts/:id',
-    name: 'Details',
+    path: '/newsfeed/details/:id',
+    name: RouteName.Details,
     component: () => import('../components/details.vue'),
+    props: true,
+  },
+  {
+    path: '/newsfeed/edit/:id',
+    name: RouteName.EditPost,
+    component: () => import('../components/edit-post.vue'),
     props: true,
   },
 ];

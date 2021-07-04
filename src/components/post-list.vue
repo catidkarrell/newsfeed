@@ -1,24 +1,25 @@
 <template>
   <div class='post-list'>
-    <div v-for="post in posts" :key="post.id">
-      <router-link :to="{ name: 'Details', params: { id: post.id } }">
-        <h3>{{ post.title }}</h3>
-      </router-link>
-      <p></p>
-      <p>{{ post.text }}</p>
+    <div v-for='post in posts' :key='post.id'>
+      <SinglePost :post='post' />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import IPost from '@/interface/data';
+import { defineComponent, PropType } from 'vue';
+import SinglePost from '@/components/single-post.vue';
 
 export default defineComponent({
   name: 'postList',
-  props: ['posts', 'post'],
-  setup(props) {
-    console.log(props.posts);
+  props: {
+    posts: {
+      type: Array as PropType<IPost[]>,
+      required: true,
+    },
   },
+  components: { SinglePost },
 });
 </script>
 
