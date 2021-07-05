@@ -35,11 +35,15 @@ function getPost() {
     return false;
   }
 
+  function goToDetails(key: number) {
+    router.push({ name: RouteName.Details, params: { id: key } });
+  }
+
   function goToEditPost(key: number) {
     router.push({ name: RouteName.EditPost, params: { id: key } });
   }
   return {
-    posts, createPost, deletePost, updateEdit, goToEditPost,
+    posts, createPost, deletePost, updateEdit, goToEditPost, goToDetails,
   };
 }
 export default getPost;

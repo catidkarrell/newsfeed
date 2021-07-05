@@ -1,11 +1,11 @@
 <template>
   <div class='singlepost'>
-    <h3 @click='gotoDetails' id='detailsHeader'>{{ post.title }}</h3>
+    <h3 @click='goToPostDetails' id='detailsHeader'>{{ post.title }}</h3>
     <p></p>
     <p>{{ snippet }}</p>
   </div>
     <div class='button'>
-      <button @click='gotoEdit'>
+      <button @click='goToPostEdit'>
         Edit
       </button>
     </div>
@@ -27,21 +27,21 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { goToEditPost } = getPosts();
+    const { goToEditPost, goToDetails } = getPosts();
 
     const snippet = computed(() => {
       return props.post.text.substring(0, 100) + '...';
     });
 
-    function gotoEdit() {
+    function goToPostEdit() {
       goToEditPost(props.post.id);
     }
 
-    function gotoDetails() {
-      router.push({ name: RouteName.Details, params: { id: props.post.id } });
+    function goToPostDetails() {
+      goToDetails(props.post.id);
     }
 
-    return { gotoEdit, gotoDetails, snippet };
+    return { goToPostEdit, goToPostDetails, snippet };
   },
 });
 </script>

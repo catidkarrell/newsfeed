@@ -1,5 +1,5 @@
 <template>
-  <div class='post-list'>
+  <div class='postList'>
     <div v-for='post in posts' :key='post.id'>
       <SinglePost :post='post' />
     </div>
@@ -24,14 +24,14 @@ export default defineComponent({
 </script>
 
 <style>
-.post-list > * {
+.postList > * {
   grid-column: 1/-1;
   background: rgb(214, 214, 214);
   padding: 25px;
   margin: 10px;
   border-radius: 10px;
 }
-.post-list {
+.postList {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-auto-rows: minmax(150px, auto);

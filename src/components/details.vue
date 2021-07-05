@@ -7,7 +7,7 @@
             <div class='buttons'>
                 <button @click='$router.go(-1)'>Back</button>
                 <button @click='gotoEdit'>Edit</button>
-                <button @click.prevent='removePost' id='deleteButton'>
+                <button @click.prevent='removePost'>
                   Delete
                 </button>
             </div>

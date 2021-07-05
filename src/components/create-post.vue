@@ -78,11 +78,10 @@ div #postform {
   padding: 10px;
   text-align: left;
   border-radius: 10px;
-  color: gray;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  border: 2px solid rgb(219, 219, 219);
+  border: 1px solid rgb(219, 219, 219);
   font-size: 1.2em;
 }
 textarea {
@@ -91,11 +90,10 @@ textarea {
   padding: 20px;
   text-align: left;
   border-radius: 10px;
-  color: gray;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  border: 2px solid rgb(219, 219, 219);
+  border: 1px solid rgb(219, 219, 219);
   font-size: 1.2em;
 }
 div #postform > * {
