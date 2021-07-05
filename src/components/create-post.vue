@@ -1,13 +1,13 @@
 <template>
-  <div id="postform">
+  <div id='postform'>
     <div>
       <form>
-        <input id="postTitle" placeholder="Title" v-model="title" required />
+        <input id='postTitle' placeholder='Title' v-model='title' required />
         <p></p>
-        <textarea rows="3" placeholder="Content" v-model="text" required></textarea>
-        <div class="buttons">
-          <button @click.prevent="addPost">Post</button>
-          <button @click.prevent="clearContents">Cancel</button>
+        <textarea rows='3' placeholder='Content' v-model='text' required></textarea>
+        <div class='buttons'>
+          <button @click.prevent='addPost'>Post</button>
+          <button @click.prevent='clearContents'>Cancel</button>
         </div>
       </form>
     </div>
