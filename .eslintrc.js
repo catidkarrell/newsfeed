@@ -18,5 +18,7 @@ module.exports = {
     '@typescript-eslint/no-shadow': ["error"],
     'import/prefer-default-export': "off",
     "object-shorthand": 0,
+    "prefer-template": "off",
+    'arrow-body-style': "off",
   },
 };
