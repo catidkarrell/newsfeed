@@ -1,5 +1,5 @@
 <template>
-    <div id='post'>
+    <div id='post-details'>
         <div>
             <h3>{{ post.title }}</h3>
             <p></p>
@@ -69,7 +69,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-div #post {
+div #post-details {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-auto-rows: minmax(200px, auto);

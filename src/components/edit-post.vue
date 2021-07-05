@@ -1,5 +1,5 @@
 <template>
-  <div id='post'>
+  <div id='post-edit'>
     <div>
       <form>
         <input id='postTitle' placeholder='Title' v-model='post.title' required
@@ -40,7 +40,7 @@ export default defineComponent({
     const { posts, updateEdit, deletePost } = getPosts();
     let index = 0;
 
-    let post: IPost = {
+    const post: IPost = {
       title: '',
       text: '',
       id: 0,
@@ -90,7 +90,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-div #post {
+div #post-edit {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-auto-rows: minmax(200px, auto);
@@ -99,8 +99,5 @@ div #post {
   margin: 0 auto;
   justify-content: left;
   text-align: left;
-}
-#deletBtn {
-  background: rgb(129, 15, 38);
 }
 </style>
