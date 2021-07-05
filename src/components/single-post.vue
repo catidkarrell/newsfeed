@@ -5,17 +5,13 @@
     <p>{{ snippet }}</p>
   </div>
     <div class='button'>
-      <button @click='goToPostEdit'>
-        Edit
-      </button>
+      <button @click='goToPostEdit'>Edit</button>
     </div>
 </template>
 
 <script lang="ts">
 import IPost from '@/interface/data';
 import { computed, defineComponent, PropType } from 'vue';
-import router from '@/router';
-import { RouteName } from '@/enum/route-name';
 import getPosts from '@/composables/use-post';
 
 export default defineComponent({
