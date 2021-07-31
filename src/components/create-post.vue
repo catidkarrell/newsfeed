@@ -26,20 +26,18 @@ export default defineComponent({
     const title = ref('');
     const text = ref('');
 
-    function addPost() {
-      if (title.value.trim() !== '' && text.value.trim() !== '') {
-        createPost(title.value, text.value);
-        title.value = '';
-        text.value = '';
-      } else {
-        alert('Post is empty.');
-      }
-      title.value = '';
-      text.value = '';
-    }
     function clearContents() {
       title.value = '';
       text.value = '';
+    }
+
+    function addPost() {
+      if (title.value.trim() !== '' && text.value.trim() !== '') {
+        createPost(title.value, text.value);
+      } else {
+        alert('Post is empty.');
+      }
+      clearContents();
     }
     return {
       title, text, addPost, clearContents,

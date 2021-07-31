@@ -12,7 +12,7 @@
 <script lang="ts">
 import IPost from '@/interface/data';
 import { computed, defineComponent, PropType } from 'vue';
-import getPosts from '@/composables/use-post';
+import navPosts from '@/composables/use-navigation';
 
 export default defineComponent({
   name: 'singlePost',
@@ -23,7 +23,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { goToEditPost, goToDetails } = getPosts();
+    const { goToEditPost, goToDetails } = navPosts();
 
     const snippet = computed(() => {
       return props.post.text.substring(0, 100) + '...';

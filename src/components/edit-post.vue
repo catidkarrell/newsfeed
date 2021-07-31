@@ -31,7 +31,7 @@ export default defineComponent({
   name: 'EditPost',
   props: {
     id: {
-      type: Number,
+      type: String,
       required: true,
     },
   },
@@ -50,7 +50,7 @@ export default defineComponent({
     });
 
     for (let i = 0; i < posts.value.length; i += 1) {
-      if (posts.value[i].id == key.value) {
+      if (posts.value[i].id === +key.value) {
         console.log(posts.value[i].title);
         console.log(posts.value[i].id);
         index = i;
@@ -58,6 +58,7 @@ export default defineComponent({
         post.text = posts.value[i].text;
         post.id = posts.value[i].id;
         console.log(post);
+        break;
       }
     }
 

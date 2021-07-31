@@ -13,16 +13,21 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../views/Newsfeed.vue'),
   },
   {
-    path: '/newsfeed/details/:id',
+    path: '/newsfeed/:id',
     name: RouteName.Details,
     component: () => import('../components/details.vue'),
     props: true,
   },
   {
-    path: '/newsfeed/edit/:id',
+    path: '/newsfeed/:id/edit',
     name: RouteName.EditPost,
     component: () => import('../components/edit-post.vue'),
     props: true,
+  },
+  {
+    path: '/:pathMatch(.*)',
+    name: 'PageNotFound',
+    component: () => import('../components/page-not-found.vue'),
   },
 ];
 

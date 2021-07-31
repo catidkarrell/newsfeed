@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h1>Karrel Vincent Catid</h1>
+    <h3>Made using Vue 3 + Typescript</h3>
   </div>
 </template>
 

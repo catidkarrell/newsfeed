@@ -19,19 +19,21 @@
 import { defineComponent, ref } from 'vue';
 import IPost from '@/interface/data';
 import getPosts from '@/composables/use-post';
+import navPosts from '@/composables/use-navigation';
 import router from '@/router';
 
 export default defineComponent({
   name: 'Details',
   props: {
     id: {
-      type: Number,
+      type: String,
       required: true,
     },
   },
   setup(props) {
     const key = ref(props.id);
-    const { posts, goToEditPost, deletePost } = getPosts();
+    const { posts, deletePost } = getPosts();
+    const { goToEditPost } = navPosts();
     let index = 0;
 
     const post: IPost = {
@@ -41,7 +43,7 @@ export default defineComponent({
     };
 
     for (let i = 0; i < posts.value.length; i += 1) {
-      if (posts.value[i].id == key.value) {
+      if (posts.value[i].id === +key.value) {
         console.log(posts.value[i].title);
         console.log(posts.value[i].id);
         index = i;
